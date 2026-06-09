@@ -76,6 +76,7 @@ let
       pandas
       matplotlib
       scikit-learn
+      scipy
     ]
   );
 in
@@ -196,6 +197,9 @@ in
     wl-mirror
     unrar
     ouch
+    cargo
+    rustc
+    gnutar
 
     # librewolf
     obs-studio
@@ -211,6 +215,7 @@ in
     qalculate-qt
     qbittorrent
     tor-browser
+    ludusavi
 
     osu-lazer-bin
     prismlauncher
@@ -348,7 +353,7 @@ in
 
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
+    powerOnBoot = false;
     settings = {
       General = {
         Experimental = true;
@@ -376,6 +381,10 @@ in
 
   # programs.sway.enable = true;
   # programs.sway.wrapperFeatures.gtk = true;
+
+  programs.bash.shellInit = ''
+    export PATH="$HOME/.cargo/bin:$PATH"
+  '';
 
   xdg.portal = {
     enable = true;
@@ -410,7 +419,7 @@ in
   };
   programs.nvf = {
     enable = true;
-    settings = import ./mike-nvf-config.nix;
+    settings = import ./nvf-config.nix;
   };
 
   # Some programs need SUID wrappers, can be configured further or are
